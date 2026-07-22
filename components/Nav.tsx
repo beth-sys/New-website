@@ -6,6 +6,10 @@ import { Menu, X } from "lucide-react";
 const links = [
   { label: "Communities", href: "/communities" },
   { label: "Search Homes", href: "/search" },
+  { label: "Events", href: "/events" },
+  { label: "Restaurants", href: "/restaurants" },
+  { label: "Shopping", href: "/shopping" },
+  { label: "Outdoor", href: "/outdoor" },
   { label: "Market Reports", href: "/market-reports" },
   { label: "Blog", href: "/blog" },
   { label: "About Beth", href: "/about" },

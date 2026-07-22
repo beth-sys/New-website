@@ -71,9 +71,11 @@ one-off.
 - [ ] Replace the Calendly placeholder URL in
       `components/contact/CalendlySection.tsx` with Beth's real
       scheduling link
-- [ ] Wire `app/api/contact/route.ts` to an actual email send and/or
-      CRM lead-creation call once a CRM target is confirmed (currently
-      just logs submissions server-side)
+- [ ] ~~Wire `app/api/contact/route.ts` to an actual email send and/or
+      CRM lead-creation call once a CRM target is confirmed~~ — **done**:
+      wired to Follow Up Boss. See "Follow Up Boss setup" below. Email
+      notification (e.g. via Resend) is still a good idea as a backup
+      to the CRM and remains a TODO.
 - [ ] Fill in real phone/email/office address in
       `components/contact/ContactInfo.tsx`
 - [ ] Decide and wire the CMS/database path (Payload+Supabase or
@@ -128,3 +130,86 @@ Phase 1 is now fully scaffolded end to end.
 market reports are built. Phase 3 (events, restaurants, shopping,
 outdoor recreation, resources) is next whenever you want to continue —
 see the master prompt for scope.
+
+## Phase 3 progress
+
+- [x] **Restaurants guide** — `/restaurants` index with a client-side
+      category filter (Steakhouses, Italian, Asian, Mexican, Brunch,
+      Coffee, Cocktails, Date Night, Luxury Dining, Hidden Gems — one
+      per category to start) and `/restaurants/[slug]` detail pages
+      with price range, map placeholder, reservations CTA, and linked
+      nearby neighborhoods. Content in `data/restaurants.ts` is a
+      first-pass draft based on general knowledge of long-standing Las
+      Vegas restaurants — verify names, locations, and that each is
+      still open before publishing.
+- [x] **Shopping guide** — `/shopping` index with a client-side
+      category filter (Malls & Centers, Outlets, Luxury Shopping,
+      Local Boutiques) covering Fashion Show, Downtown Summerlin, Town
+      Square, District at Green Valley Ranch, both premium outlet
+      centers, Crystals, Tivoli Village, and downtown's Arts District
+      and Container Park, plus `/shopping/[slug]` detail pages with
+      highlights, a map placeholder, a website link, and linked nearby
+      neighborhoods. Same content caveat applies — verify tenant lists
+      and details before publishing.
+- [x] **Events calendar** — `/events` index with a client-side category
+      filter (Food Festivals, Concerts, Farmers Markets, First Friday,
+      Sports, Holiday Events, Community Events), sorted chronologically
+      with a date-badge card layout, plus `/events/[slug]` detail pages
+      showing time, venue, recurrence, a map placeholder, and linked
+      nearby neighborhoods. 9 sample events across all 7 categories,
+      several modeled on genuinely recurring valley events (First
+      Friday, farmers markets, pro sports seasons) — same caveat as
+      everywhere else: confirm actual dates/times against official
+      sources before publishing, and plan to move this to CMS-driven
+      entries per the master prompt so events can be added without a
+      code deploy.
+- [x] **Outdoor recreation guide** — `/outdoor` index with a
+      client-side category filter (Natural Areas & Preserves, Trails,
+      Golf, Dog Parks, Family Parks) covering Red Rock Canyon, Mount
+      Charleston, Lake Mead, Springs Preserve, Clark County Wetlands
+      Park, the River Mountains Loop Trail, Bali Hai Golf Club, Desert
+      Breeze Dog Park, and Sunset Park, plus `/outdoor/[slug]` detail
+      pages with highlights, a map placeholder, and linked nearby
+      neighborhoods. Same content caveat — verify hours/fees/access
+      before publishing.
+- [x] **Resources** — `/resources` with 6 real, generated downloadable
+      PDF guides in `public/resources/`: Buyer's Guide, Seller's Guide,
+      Loan Options (VA/FHA/Conventional combined into one comparison
+      guide), 1031 Exchange Basics, Investment Guide, and Relocation
+      Guide. Each is genuinely written content (not placeholder text),
+      built with reportlab — see `generate_resources.py` if you want to
+      regenerate or edit them (edit the script, not the PDFs directly).
+      Downloads are ungated (no email capture) — a deliberate default
+      for friendliness, but many agents prefer gating these behind a
+      short form to capture leads. Easy to add later if wanted.
+      Same standing caveat: this is genuinely useful general content,
+      but not legal/tax/lending advice, and each PDF says so — still
+      worth a professional review pass (especially the 1031 exchange
+      and loan guides) before publishing.
+
+**Phase 3 is now complete**: Restaurants, Shopping, Events, Outdoor
+Recreation, and Resources are all built, on top of Phases 1 and 2.
+Phase 4 (new construction section, saved searches/favorites, AI
+assistant, mortgage calculator, home valuation tool, further CRM/data
+integrations) is next whenever you want to continue — see the master
+prompt for scope.
+
+## Follow Up Boss setup
+
+The contact form (`app/api/contact/route.ts`) creates a lead in Follow
+Up Boss automatically once you add an API key — no code changes
+needed.
+
+1. In Follow Up Boss, go to **Admin -> API** and generate an API key.
+2. **Locally**: copy `.env.example` to `.env.local` and paste the key
+   in as `FOLLOWUPBOSS_API_KEY=your-key-here`.
+3. **On Vercel**: go to your project -> **Settings -> Environment
+   Variables**, add `FOLLOWUPBOSS_API_KEY` with the same value, and
+   redeploy.
+4. Submit a real test message through `/contact` and confirm it shows
+   up as a new lead in Follow Up Boss before relying on this in
+   production — I couldn't call the live FUB API from this environment
+   to verify the request shape, so this needs one real end-to-end test.
+
+Without the key set, the form still works exactly as before (validates
+and logs server-side) — it just won't create a FUB lead.
