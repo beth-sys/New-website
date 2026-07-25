@@ -24,14 +24,23 @@ export default function AboutTeaser() {
         <p className="text-charcoal/80 leading-relaxed mb-8">
           Her approach pairs deep neighborhood knowledge with a
           straightforward, no-pressure process, whether you&rsquo;re buying
-          your first home or your next investment property.
+          your first home or your next investment property — backed by a
+          5.0 rating across 16 verified Zillow reviews.
         </p>
-        <a
-          href="/about"
-          className="inline-block border border-ink px-7 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors"
-        >
-          Read Beth&rsquo;s story
-        </a>
+        <div className="flex flex-wrap gap-4">
+          <a
+            href="/about"
+            className="inline-block border border-ink px-7 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors"
+          >
+            Read Beth&rsquo;s story
+          </a>
+          <a
+            href="/reviews"
+            className="inline-block text-charcoal px-2 py-3 text-sm underline underline-offset-4 hover:text-gold-dark"
+          >
+            See client reviews
+          </a>
+        </div>
       </div>
     </section>
   );

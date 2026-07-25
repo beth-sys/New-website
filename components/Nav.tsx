@@ -12,6 +12,7 @@ const links = [
   { label: "Outdoor", href: "/outdoor" },
   { label: "Market Reports", href: "/market-reports" },
   { label: "Blog", href: "/blog" },
+  { label: "Reviews", href: "/reviews" },
   { label: "About Beth", href: "/about" },
 ];
 

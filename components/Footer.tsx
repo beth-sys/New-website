@@ -28,6 +28,7 @@ export default function Footer() {
           </p>
           <ul className="space-y-2 text-sm">
             <li><a href="/about" className="hover:text-gold-light">About Beth</a></li>
+            <li><a href="/reviews" className="hover:text-gold-light">Reviews</a></li>
             <li><a href="/contact" className="hover:text-gold-light">Contact</a></li>
             <li><a href="/resources" className="hover:text-gold-light">Buyer &amp; Seller Guides</a></li>
           </ul>
@@ -46,10 +47,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Required compliance strip: Equal Housing Opportunity + license.
-          TODO before launch: confirm exact license number, brokerage
-          name, and logo file with Beth per Nevada Real Estate Division
-          requirements. */}
+      {/* Required compliance strip: Equal Housing Opportunity + license. */}
       <div className="border-t border-cream/10">
         <div className="max-w-content mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-cream/50">
           <div className="flex items-center gap-3">
@@ -61,7 +59,8 @@ export default function Footer() {
             </span>
             <span>
               Equal Housing Opportunity. Beth Legge, REALTOR® — Nevada
-              License #[TODO]. [Brokerage Name] — [Brokerage License #TODO].
+              License S.0188006. Scofield Group, LLC — Broker: Kirby
+              Scofield, Nevada License B.1001112.
             </span>
           </div>
           <span>&copy; {new Date().getFullYear()} Beth Legge Real Estate. All rights reserved.</span>

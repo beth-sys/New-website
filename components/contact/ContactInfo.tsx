@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import { beth } from "@/data/beth";
 
 export default function ContactInfo() {
   return (
@@ -7,21 +8,21 @@ export default function ContactInfo() {
         <Phone size={20} className="text-gold-dark mt-0.5" />
         <div>
           <p className="text-sm text-stone">Phone</p>
-          <p className="text-ink">(702) 555-0142</p>
+          <p className="text-ink">{beth.phone}</p>
         </div>
       </div>
       <div className="flex items-start gap-4">
         <Mail size={20} className="text-gold-dark mt-0.5" />
         <div>
           <p className="text-sm text-stone">Email</p>
-          <p className="text-ink">beth@[domain].com</p>
+          <p className="text-ink">{beth.email}</p>
         </div>
       </div>
       <div className="flex items-start gap-4">
         <MapPin size={20} className="text-gold-dark mt-0.5" />
         <div>
           <p className="text-sm text-stone">Office</p>
-          <p className="text-ink">[Brokerage Name]<br />Las Vegas, NV</p>
+          <p className="text-ink">{beth.brokerage}<br />{beth.officeAddress}</p>
         </div>
       </div>
     </div>
