@@ -29,11 +29,11 @@ Open http://localhost:3000.
 
 | Role | Value |
 |---|---|
-| Cream (bg) | `#FAF8F4` |
-| Ink (primary text/dark bg) | `#17140F` |
-| Charcoal | `#2E2A24` |
-| Stone (muted text/borders) | `#948B7E` / `#D8D2C6` |
-| Gold accent | `#B08D57` (`light` `#D4B483`, `dark` `#8A6C3F`) |
+| Cream (bg) | `#FFFFFF` |
+| Ink (primary text/dark bg) | `#0B1C33` |
+| Charcoal | `#13284A` |
+| Stone (muted text/borders) | `#8A95A6` / `#D7DBE2` |
+| Accent (logo blue) | `#4870A0` (`light` silver `#C0C6CF`, `dark` `#2F5280`) |
 | Display face | Fraunces (via `next/font/google`) |
 | Body / UI face | Geist Sans (via the `geist` npm package, not `next/font/google`) |
 | Caption / data face | Geist Mono (via the `geist` npm package) |
@@ -47,7 +47,7 @@ build-time `next/font` compile error. Importing directly from `geist`
 avoids that entirely. See `lib/fonts.ts` for details.
 
 Signature element: the **valley rule** (`.valley-rule` in
-`globals.css`) — a thin gold line with a faint mesa/mountain silhouette,
+`globals.css`) — a thin silver line with a faint mesa/mountain silhouette,
 used as a section divider. It's a nod to the Spring Mountains / Red Rock
 skyline that rings the Las Vegas Valley, and it's meant to be the one
 recurring visual signature across the site rather than a decorative
@@ -193,6 +193,46 @@ Phase 4 (new construction section, saved searches/favorites, AI
 assistant, mortgage calculator, home valuation tool, further CRM/data
 integrations) is next whenever you want to continue — see the master
 prompt for scope.
+
+## Navigation
+
+`components/Nav.tsx` groups the site's growing page count into a clean
+top-level structure: **Communities** and **Search Homes** stay as
+direct links, **Explore Vegas** (Events, Restaurants, Shopping, Outdoor
+Recreation) and **Resources** (Market Reports, Blog, Reviews, Buyer &
+Seller Guides) are click-to-open dropdowns, and **About Beth** plus the
+**Contact** button close it out. Dropdowns close on outside click,
+Escape, or selecting a link. The mobile menu mirrors this with the two
+groups shown as labeled sub-lists rather than dropdowns, since
+everything's already stacked vertically there.
+
+## Real content sync (from Beth's public Zillow profile)
+
+As of this update, the following are now real facts pulled from
+https://www.zillow.com/profile/Beth%20Legge and the Scofield Group
+team page, replacing earlier `[TODO]` placeholders:
+
+- License: Nevada S.0188006, under Scofield Group, LLC (Broker: Kirby
+  Scofield, Nevada B.1001112) — now in `data/beth.ts`, `Footer.tsx`
+- Contact info (phone, email, office address) — now in `data/beth.ts`,
+  `components/contact/ContactInfo.tsx`
+- Bio, years of experience, sales stats, specialties — `data/beth.ts`
+  (bio paragraphs are original writing based on the public facts, not
+  copied from Zillow's bio text)
+
+**New: `/reviews` page.** Uses real review data (reviewer names where
+Zillow shows a real name, "Verified Zillow Buyer/Seller" where it only
+exposed a username, real dates, real transaction details) with
+*original paraphrased summaries* of each review rather than verbatim
+text — Zillow review content isn't ours to republish word-for-word,
+and this was flagged as a risk in the original master prompt too. Each
+review links back to the source. See `data/reviews.ts` for the full
+sourcing note.
+
+**Worth doing periodically**: re-check the Zillow profile for new
+reviews and updated sales stats — this is a one-time sync, not a live
+feed. A real integration would need Zillow's review/reply API access
+(not guaranteed to be available) or a manual monthly update process.
 
 ## Follow Up Boss setup
 

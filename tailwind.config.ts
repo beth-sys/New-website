@@ -5,15 +5,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: "#FAF8F4",
-        ink: "#17140F",
-        charcoal: "#2E2A24",
-        stone: "#948B7E",
-        "stone-light": "#D8D2C6",
-        gold: {
-          DEFAULT: "#B08D57",
-          light: "#D4B483",
-          dark: "#8A6C3F",
+        cream: "#FFFFFF",
+        ink: "#0B1C33",
+        charcoal: "#13284A",
+        stone: "#8A95A6",
+        "stone-light": "#D7DBE2",
+        accent: {
+          DEFAULT: "#4870A0",
+          light: "#C0C6CF",
+          dark: "#2F5280",
         },
       },
       fontFamily: {
